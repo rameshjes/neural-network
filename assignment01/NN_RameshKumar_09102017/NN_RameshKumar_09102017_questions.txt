@@ -1,0 +1,13 @@
+Q: Define Neural Networks?
+
+A: Neural networks represent a huge parallel distributed processor which consists of very small processing units and each unit store experimental knowledge and make it available for use.
+
+Q: How do you say neural networks resembles brain?
+
+A: - Like human brain, neural networks acquire the knowledge from its environment through a learning process.
+   - And, it stores the acquired knowledge in interneuron strengths known as synaptic weights.
+
+Q: Advantages of neural networks:
+
+A: Nonlinearity, Input-Output mapping, Adaptivity, Evidential response, Contextual information, Fault tolerance, VLSI implementability, Uniformity of analysis and design, Neurobiological analogy.
+
