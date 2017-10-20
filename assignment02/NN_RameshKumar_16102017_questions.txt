@@ -1,0 +1,13 @@
+Q1: What are most common tasks of perceptron?
+
+A: i. Classification ii. Regression
+
+Q2: Describe regression and classification problem
+
+A: Regression is used to predict values of continuous valued function. While, in classification we predit values in a discrete output.
+
+Q3: What are 3 rules in perceptron error? 
+
+A: i. First rule: if error is positive we do vector addition by adding input vector to weight vector
+   ii. Second rule: If error is negative, we do vector subtraction by subtracting weight vector from input vector
+   iii. No error rule: if error is zero; desired output equal to current output, we do not change weights 
