@@ -1,0 +1,19 @@
+Q1: What are different types of learning? 
+
+A: 
+	i. Error correction learning or Widrow-Hoff or delta rule
+	ii. Memory based learning
+	iii. Hebbian learning
+	iv. Competitive learning
+	v. Boltzmann learning
+
+Q2: What is difference between Hebbian learning and Competitive learning?
+
+A: In a NN based on Hebbian learning several output neurons may be active simultaneously, while in competitive learning only a single output neuron is active at any one time.
+
+Q3: What layers are used in Boltzmann learning, and what is their functionality?
+
+A: Two Layers:
+
+	i. Visible : Visible neurons provide an interface between the network and the environment in which it operates.
+	ii. Hidden: Hidden neurons always operate freely.
