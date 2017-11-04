@@ -1,0 +1,15 @@
+Q1: What is a learning machine?
+
+A1: A machine takes single/multiple inputs, weights and bias, and process it with the help of activation function and compares the output with the desired output.
+Then, the machine updates the weights and bias with the help of error.
+
+Q2: How can we characterize between powers in machine learning?
+
+A2: More power: If we use more power we can model complex classifiers, but the disadvantage is that the learning machine might overfit. So we can't accurately classiy with overfitted model.
+
+Less power: With the help of less power learning machines, we can avoid the overfitting problem but there will be certain restrictions for modelling.
+
+Q3: What is shattering?
+
+A3: Shattering is a process of classifying between two classes with the help of any model (e.g Line, Circle, Rectangle, Triangle).
+But these models can shatter the points upto certain dimension and it can be defined by VC dimesion. 
