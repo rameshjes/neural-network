@@ -1,0 +1,182 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{amsmath}
+\title{\Huge Neural Networks \\
+[6mm]
+Assignment 1\\}
+\author{Ravikiran Bhat\\
+Rubanraj Ravichandran\\
+Ramesh Kumar}
+
+\begin{document}
+\maketitle
+\newpage
+\section{Summary}
+ 
+\subsection{Single-Layer Perceptrons}
+
+\begin{itemize}
+	\item Poineering contributions in neural network
+		\begin{itemize}
+			\item McCulloch and Pitts introduced idea of neural networks as computing machines
+			\item Hebb introduced first rule of self-organized learning
+			\item Rosenblatt proposed model of perceptron for supervised learning
+		\end{itemize}
+	\item  \textbf{Rosenblatt's perceptron}
+		\begin{itemize}
+			\item Perceptron is simplest form of neural network used for classification of linearly separable patterns
+			\item Consists of single neuron with adjustable weights and bias
+			\item Rosenblatt introduced perceptron convergence theorem that proved, if patterns/vectors used for training the network are linearly separable, then perceptron always converges and hyperplane can easily separate these patterns
+			\item Single neuron corresponds to the adaptive filter such as ADALINE(adaptive linear neuron)
+		\end{itemize}
+\end{itemize}
+
+\subsection{Adaptive Filtering Problem}
+	\begin{itemize}
+		\item Adaptive filtering operation consists of two continuous processes
+			\begin{itemize}
+				\item Filtering process : Involves the computation of two signals
+					\begin{itemize}
+						\item Output is produced based on input vectors
+						\item Error signal obtained by comparing current output to the desired output
+					\end{itemize}
+				\item Adaptive process : Involves weights adjustment based on error signal 
+			\end{itemize}
+		\item Combination of these two processes produce feedback loop acting around the neuron
+	\end{itemize}
+%% Unconstrained Optimization Techniques
+\subsection{Unconstrained Optimization Techniques}
+\begin{itemize}
+	\item It is a way of adjusting weight vector w of an adaptive filter algorithm to minimize the cost function with respect of weight vector
+	\item Class of unconstrained optimization algorithms is based on idea of local iterative descent
+		\begin{itemize}
+			\item Start with a initial guess denoted by w(0)
+			\item Generate a sequence of weight vectors w(1), w(2), ..., such that cost function is reduced at each iteration of the algorithm
+			
+		\end{itemize}
+\end{itemize}
+Three unconstrained optimization methods that are based on idea of local iterative descent are:
+\subsubsection{Steepest Descent}
+\begin{itemize}
+	\item Successive adjustments of the weight vector w are in the direction of steepest descent; in a direction opposite to the gradient vector $\triangle \epsilon(w)$
+	\item Steepest descent algorithm is formally described by: $$ w(n + 1) = w(n) - \eta g(n)$$ 
+	where $ \eta$ is positive constant called step-size or learning parameter and g(n) is the gradient vector evaluated at the point w(n)
+	\item Weight is adjusted as : $$ \triangle w(n) = w(n + 1) - w(n)  = - \eta g(n) $$ 
+	\item Learning-rate parameter has good influence on convergence behavior
+		\begin{itemize}
+			\item When $\eta$ is small, transient response is over-damped, and trajectory traced by w(n) follows a smooth path in the W-plane
+			\item When $\eta$ is large, transient response is over-damped, and trajectory traced by w(n) follows a zigzag(oscillatory) path in the W-plane
+			\item When it exceeds than certain threshold, algorithm becomes unstable(and it diverges)
+		\end{itemize}
+\end{itemize}
+
+\subsubsection{Newton's Method}
+
+\begin{itemize}
+	\item Basic idea of this method is to minimize the quadratic approximation of the cost function $\epsilon(w)$ around the current point w(n)
+	\item second-order Taylor series expansion of the cost function is used around the point w(n)
+	\item Generally, this method converges quickly asymptotically and does not exhibit the zigzagging behavior, unlike steepest descent method
+	\item However, for newton's method to work 
+		\begin{itemize}
+			\item Hessian H(n) should be positive definite matrix for all iteration n
+			\item Unfortunately, in general there is no guarantee that H(n) is positive definite
+			\item If the Hessian H(n) is not positive definite, modifications of Newton's method is necessary
+		\end{itemize}
+\end{itemize}
+
+\subsubsection{Gauss-Newton Method}
+
+\begin{itemize}
+	\item This method is applicable to a cost function that is expressed as sum of error squares(i.e. Special case of Newton) : $$ \epsilon(w) = \frac{1}{2} \sum_{i = 1}^{n} e^2(i)$$
+	\item Weight update is given as: $$ w(n+1) = w(n) - (J^T(n) J(n) )^{-1}  J^T(n) e(n) $$
+	\item Gauss-Newton method only requires the Jacobian matrix of the error vector e(n), rather than knowledge of Hessian matrix of the cost function as in Gauss method
+	\item However, for this method, iteration should be computable and the matrix product $J^T(n) J(n)$ must be nonsingular. In other words, n rows of J(n) must be linearly independent
+	\item Unfortunately, rows of J(n) are always linearly independent, therefore, to get rid of this deficiency we add diagonal matrix $\delta I$ to the matrix $J^T(n)J(n)$
+	\item The parameter $\rho$ is a small positive constant chosen to ensure that $$ J^T(n) J(n) + \rho I $$ is positive definite for all n
+	\item On this basis, Gauss-Newton method is slightly modified as : $$ w(n + 1) = w(n) - (J^T(n) J(n) + \delta I)^{-1}  J^T(n) e(n) $$
+\end{itemize}
+
+\subsection{Linear Least-Squares Filter}
+
+\begin{itemize}
+	\item Linear least-squares filter has two distinctive characteristics
+		\begin{itemize}
+			\item This is one of application of Gauss-Newton method
+			\item Single neuron is linear
+			\item Cost function $\epsilon(w)$ used to design the filter consists of the sum of error squares
+			\item Error vector e(n) is given as: $$ e(n) = d(n) - X(n)w(n) $$
+			where d(n) is desired vector of n-by-1 and X(n) is input matrix of n-by-m 
+			\item Differentiating above equation, we get: $$ \triangle e(n) = -X^T(n) $$
+			\item Jacobian of e(n) is: $$ J(n) = - X(n) $$
+			\item Apply Gauss Newton, we get: $$ w(n + 1) = X^{+}(n) d(n) $$ where $X^{+}$ is pseudo-inverse
+		\end{itemize}
+\end{itemize}
+
+\subsection{Least-Mean-Square Algorithm}
+
+\begin{itemize}
+	\item Least-mean-square(LMS) algorithm is based on use of instantaneous values for cost function: $$ \epsilon(w) = \frac{1}{2} e^2(n) $$
+	\item LMS algorithm operates with a linear neuron, error signal is expressed as : $$ e(n) = d(n) - x^T(n)w(n) $$
+	\item Weight update is given as : $$ \hat{w}(n+1) = \hat{w}(n) + \eta x(n) e(n)$$ 
+	where $\eta$ is learning-rate parameter and $\hat{w}$(n) is estimate of the weight vector
+	\item In steepest descent algorithm weight vector w(n) follows a well-defined trajectory in weight space for prescribed n. While, in LMS algorithm, weight vector $\hat{w}(n)$ traces a random trajectory. Due to this reason, LMS algorithm is also called as Stochastic gradient algorithm 
+\end{itemize}  
+
+\subsubsection{Convergence Considerations of the LMS Algorithm}
+
+\begin{itemize}
+	\item From practical point of view, first criterion for convergence of the LMS algorithm is convergence in the mean square : \ 
+	$$ E[e^2(n)]\longrightarrow constant As   n  \longrightarrow  \inf $$
+	\item LMS is convergent in the mean square provided that $\eta$ satisfies the condition $$ 0 < \eta < \frac{2}{\lambda _ {max} }  $$ 
+	where $\lambda_{max}$ is the largest eigenvalue of correlation matrix R
+	\item In typical applications, knowledge of $\lambda_{max}$ is not available. Therefore, we use trace of $R_x$ as a conservative estimate for $\lambda_{max}$. Equation can be re-written as: $$ 0 < \eta < \frac{2}{tr[R_x] }  $$ 
+\end{itemize}
+
+\subsubsection{Virtues and Limitations of the LMS Algorithm}
+
+\begin{itemize}
+	\item One of important virtue of the LMS algorithm is its simplicity, and since it is model independent and therefore robust; that means small model uncertainty and small disturbances can only result in small estimation errors
+	\item Primary limitations of LMS algorithm are its slow rate of convergence and sensitivity to variations in the eigen structure of the input
+	\item Mostly these algorithms require number of iterations equal to about 10 times the dimensionality of the input space for it to reach a steady-state condition
+	\item Hessian matrix H is defined as the second derivative of the cost function $\epsilon(w)$ with respect to w, which is equal to $R_x$
+\end{itemize}
+
+\section{ Exercise 3.8}
+\subsection{(a)} 
+Cost function is given as : $$ J(w) = \frac{1}{2} E[(d(n) - x^T(n)w )^2 ]$$ 
+% ( d^2(n) - 2d(n) x^T(n) w  + w^T x^T(n) x(n) w
+Expanding square formula, we have: $$ J(w) = \frac{1}{2} E( d^2(n) - 2d(n) x^T(n) w  + w^T x^T(n) x(n) w ) $$ 
+
+Above equation can be simplified as : 
+
+$$ J(w) = \frac{1}{2} E[d^2(n)] - E[d(n) x^T(n) w ] + \frac{1}{2} E[w^T x^T(n) x(n) w]    $$
+
+Since $ R_x = E[x(n) x^T(n)] $ , $r_xd^T = E[x(n)^T d(n)]$ and $ \sigma^2 = E[d^2(n)] $ 
+
+Therefore, above equation can be written as:
+
+$$ J(w) = \frac{1}{2} \sigma^2 - r_{xd}^T w + \frac{1}{2} w^T R_x w $$
+
+
+\subsection{(b)}
+
+Since cost function is given as: $$ J(w) = \frac{1}{2} \sigma^2 - r_{xd}^T w + \frac{1}{2} w^T R_x w $$
+
+Gradient vector is first partial derivative of cost function with respect to w, therefore, it can be written as: 
+	$$ \frac{\partial J(w)}{\partial w} = 0 - r_xd + \frac{1}{2} 2 R_x w $$
+
+Simplify it, we have: $$ g = -r_xd + R_xw $$ 
+
+Hessian matrix is defined as second partial derivative of cost function with respect to w, therefore, it can be computed as :
+
+	$$ \frac{\partial J(w)}{\partial w} = -r_xd + R_xw  $$
+
+		$$ \frac{\partial J^2(w)}{\partial w^2} = 0 + R_x $$
+		
+Simplify it, we have $$H = -R_x $$
+
+\end{document}
