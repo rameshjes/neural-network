@@ -5,9 +5,18 @@
 \usepackage{float}
 \usepackage{pdflscape}
 \usepackage{amsmath}
+%\DeclareUnicodeCharacter{2212}{\textminus}% requires a unicode capable editor
+
+\usepackage{siunitx}
+\sisetup{
+	detect-mode,
+	detect-family,
+	detect-inline-family=math,
+}
+
 \title{\Huge Neural Networks \\
 [6mm]
-Assignment 1\\}
+Assignment 4\\}
 \author{Ravikiran Bhat\\
 Rubanraj Ravichandran\\
 Ramesh Kumar}
@@ -178,5 +187,37 @@ Hessian matrix is defined as second partial derivative of cost function with res
 		$$ \frac{\partial J^2(w)}{\partial w^2} = 0 + R_x $$
 		
 Simplify it, we have $$H = -R_x $$
+
+\subsection{(c)}
+
+In the newton method, update weight is given as : 
+
+\begin{align}
+ w(n+1) = w(n) - H^{-1}(n)g(n)
+\end{align}
+
+
+Since Hessian matrix is equal to correlation matrix $R_x$. Therefore, above equation can be re-written as: 
+\begin{align}
+w(n+1) = w(n) - R^{-1}g(n)
+\end{align}
+
+When we replace g with instantaneous values: 
+
+$$ g = -r_{xd} + R_{x}w $$ 
+
+Substituting values of $r_{xd} $ and $R_{x}$ , we have $$ g  = - x(n)d(n) + x(n)x^{T} (n)w(n) $$
+
+Substitute g in equation(2) or LMS algorithm , we get : 
+
+\begin{align}
+w(n+1 ) = \hat{w}(n) − \eta R^{-1} (- x(n)d(n) + x(n)x^{T} (n)w(n))
+\end{align}
+
+Simplifying it, we get:
+
+\begin{align}
+w(n+1 ) = \hat{w}(n) + \eta R^{-1} ( x(n)d(n) - x(n)x^{T} (n)w(n))
+\end{align}
 
 \end{document}
