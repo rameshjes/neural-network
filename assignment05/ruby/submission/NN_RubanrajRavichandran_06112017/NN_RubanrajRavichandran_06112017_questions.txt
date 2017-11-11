@@ -1,0 +1,19 @@
+Q1: What are the non linear optimization techniques available for learning?
+ 
+A1: Using mathematical formulas (e.g Jacobian)
+Steepest descent
+Newton
+Gauss Newton
+Widrow-Hoff (Least Mean Square)
+
+Q2: Which parameter influence most on convergence to optimal solution and explain the observations of convergenec with respect to that parameter?
+
+A2: Learning factor is directly influence on convergence to optimal solution.
+
+If the learning factor is small, the transient response of the algorithm is overdamped and the convergence will be slow.
+
+If the learning factor is large, the transient response of the algorithm is underdamped and the convergence will be fast.
+
+Q3: How the cost function is calculated in LMS?
+
+A3: The cost function is calculated with the help of squaring instantaneous error from the given input sequence.
