@@ -1,0 +1,14 @@
+Q1: What are the factors that infulence Generalization?
+ 
+A1: 1. Size of the training set
+2. Architecture of neural network
+3.Complexity of problem
+
+Q2: How to overcome oscillatory problem in case of large learning rate?
+
+A2: We can include a momentum term in the delta function to reduce the oscillation and the new term momentum drives the gradient decent steadily towards downhill direction.
+
+Q3: What are the two heuristics approach used to accelerate the convergence of backpropagation?
+
+A3: 1. Every weight in the network should have its own learning rate.
+2. Every learning rate should be changed from one epoch to other epoch.
