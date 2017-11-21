@@ -16,3 +16,6 @@ assignment02/ruban/\.ipynb_checkpoints/
 *.gz
 
 *.txt~
+
+.ipynb_checkpoints
+
