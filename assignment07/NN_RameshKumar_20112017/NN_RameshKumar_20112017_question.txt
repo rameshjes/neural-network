@@ -1,0 +1,10 @@
+Q1: What is support vector machine?
+A: They are supervised learning models with associated learning algorithms, 
+that analyze data used for classification and regression analysis.
+
+Q2: What is quadratic programming?
+A: QP is a well-optimization algorithms to maximize a quadratic function of some real-valued variables subject to linear constraints.
+
+Q3: Difference between support vector machine and multi-layer perceptron?
+A: In MLP, model complexity is controlled by keeping number of features(hidden neurons) small.
+On the other hand, SVM offers a solution to the design of a learning machine by controlling model complexity independently of dimensionality. MLP needs large data for training, while, SVM can show good performance on small data sets

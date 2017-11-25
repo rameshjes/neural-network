@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{amsmath}
+%\DeclareUnicodeCharacter{2212}{\textminus}% requires a unicode capable editor
+
+\usepackage{siunitx}
+\sisetup{
+	detect-mode,
+	detect-family,
+	detect-inline-family=math,
+}
+
+\title{\Huge Neural Networks \\
+[6mm]
+Assignment 7\\}
+\author{Ravikiran Bhat\\
+Rubanraj Ravichandran\\
+Ramesh Kumar}
+
+\begin{document}
+\maketitle
+\newpage
+
+\section{Support Vector Machines(SVMs)}
+
+ 
+\subsection{Introduction about SVMs}
+
+\begin{itemize}
+	\item Pioneered by Vapnik
+	\item Like multi-layer perceptrons and radial-basis function network, SVMs are also used for classification and nonlinear regression
+	\item Main idea of SVMs is to draw a hyperplane as the decision surface in such a way that the margin of separation between positive and negative examples is maximized
+	\item The machine achieves this desirable property by following method of structural risk minimization 
+	\item This principle is based on fact that error rate of learning machine on test data is bounded by sum of training-error rate and a term that depends on Vapnik-Chervonenkis(VC) dimension
+	\item SVM learning algorithm is the inner-product kernel b/w a "support vector" $x_{i}$ and the vector x drawn from the input space.
+	\item Support vectors consist of a small subset of training data extracted by the algorithm
+	\item Different ways to compute inner-product of kernel to characterize non-linear decision surface:
+		\begin{itemize}
+			\item Polynomial learning machines
+			\item Radial-basis function networks
+			\item Two-layer perceptrons(i.e with a single hidden layer)
+		\end{itemize}
+\end{itemize}
+
+%%Optimal Hyperplane for Linearly separable patterns
+
+\subsection{Optimal Hyperplane for Linearly Separable Patterns}
+
+\begin{itemize}
+	\item If patterns are linearly separable then hyperplane equation is: $$ w^T_x + b = 0$$
+	where x is an input vector, w is an adjustable weight vector and b is a bias
+	\item Goal of SVMs is to determine particular hyperplane for which margin of separation is maximized, that is considered as optimal hyperplane
+	\item support vectors are those data points that lie closest to decision surface and are difficult to classify
+	\item Margin of separation between two classes is given as $$ p = \frac{2}{\lVert w_{o}\rVert} $$
+	Above optimal hyperplane is unique in sense that optimum weight vector $ w_{o} $ provides the maximum possible separation between positive and negative examples 
+\end{itemize}
+
+\subsubsection{Quadratic Optimization for Finding Optimal Hyperplane}
+
+\begin{itemize}
+	\item Goal is to develop computationally efficient procedure for using the training samples to find optimal hyperplane
+	\item Well-studied class of optimization algorithms to maximize a quadratic function of some real-valued variables to linear constraints
+	\item Duality theorem:
+		\begin{itemize}
+			\item If primal problem has an optimal solution, dual problem also has an optimal solution and corresponding optimal values are equal
+			\item In order for $w_{o}$ to be an optimal primal solution and $\alpha_{o}$ to be an optimal dual solution, it is necessary and sufficient that $w_{o}$ is feasible for primal problem
+		\end{itemize}
+\end{itemize}
+
+\subsection{Optimal Hyperplane for Non-separable Patterns}
+
+\begin{itemize}
+	\item Margin of separation between classes is soft if a data point $(x_i, d_i)$ violates following condition $$ d_{i} (w^Tx_{i} + b) \geq + 1$$
+	i = 1, 2, .. N
+	
+	\item For formal treatment of non-separable data points, we introduce $\xi_{i}$ called slack variables, so above equation becomes $$ d_{i} (w^Tx_{i} + b) \geq + 1 - \xi_{i}$$
+	
+	i = 1, 2, .. N
+	
+\end{itemize}
+
+
+\subsection{Build a SVM for Pattern Recognition}
+
+\begin{itemize}
+	\item In order to find optimal hyperplane for non-separable patterns, Cover's theorem states that:
+		\begin{itemize}
+			\item A multi-dimensional space may be transformed into a new feature space where the patterns are linearly separable with high probability, provided two conditions are satisfied:
+				\begin{itemize}
+					\item Transformation is nonlinear
+					\item Dimensionality of feature space is high enough
+				\end{itemize}
+		\end{itemize}
+\end{itemize}
+
+\subsubsection{Examples of Support Vector Machine}
+
+\begin{itemize}
+	\item Requirement of kernel K(x,$x_{i}$) is to satisfy Mercer's theorem
+	\item Inner-product kernels for three common types of support vector machines are:
+		\begin{itemize}
+			\item Polynomial learning machine given as: $$(x^Tx_{i}  + 1)^ T $$
+				
+			\item Radial-basis function given as $$ exp(\frac{-1}{2 \sigma^{2}} \lVert x - x_{i}\rVert ^{2}) $$
+			\item Two-layer perceptron given as $$ tanh(\beta_{0}x^Tx_{i} + \beta_{1})$$
+		\end{itemize}
+	\item SVM differs from MLP  in a fundamental way.
+	\item In conventional approach, model complexity is controlled by keeping number of features(hidden neurons) small.
+	\item On the other hand, SVM offers a solution to the design of a learning machine by controlling model complexity independently of dimensionality
+	%\item Difference between back-propagation and SVM learning algorithm is that, SVM learning algorithm operates only in a batch mode. 
+	%\item Another difference is that, back-propagation algorithm minimizes a quadratic loss function, regardless of what the learning task is. While, SVM algorithm for pattern recognition is quite different from that nonlinear regression
+\end{itemize}
+
+\subsection{$\epsilon$-Insensitive Loss Function}
+
+When performing a non-linear regression task, support vector learning algorithm minimizes an $\epsilon$-insensitive loss function that is an extension of the mean absolute error criterion of minimax theory, this makes algorithm robust.
+
+\section{Exercise 2}
+
+Kindly check solution in pdf of ipython notebook
+\section{Exercise 3}
+
+Kindly check solution in pdf of ipython notebook
+\end{document}
