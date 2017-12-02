@@ -1,0 +1,8 @@
+Q1: How many hidden layers RBF network have, and what activation function it has?
+A: RBF network has single hidden layer, and its activation function is gaussian.
+
+Q2: How activation function of hidden layer in RBF is computed?
+A: By using unsupervised learning; more specifically using K-means algorithm
+
+Q3: Describe Cover's theorem.
+A: Given a family of m1 non-linear functions, if dimension of hidden space (m1) is greater than input space(m0), then probability of separability is closer to 1
