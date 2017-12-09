@@ -1,0 +1,14 @@
+Q1: What are Self Organizing Maps(SOM)?
+A: SOM's are network model for unsupervised learning, that combine a competitive learning principle with a topological structuring of neurons such that adjacent neurons tend to have similar weight vectors
+
+Q2: What are SOM's algorithm essential ingredients?
+A: i. Continuous input space
+   ii. Topology of the network
+   iii. Time-vary neighborhood function
+   iv. Learning-rate parameter
+
+Q3: What are three essential process for SOM's?
+A: i. Competition
+   ii. Cooperation
+   iii. Weight adaptation
+
